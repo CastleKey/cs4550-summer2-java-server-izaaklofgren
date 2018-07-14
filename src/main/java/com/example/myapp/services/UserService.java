@@ -3,6 +3,7 @@ package com.example.myapp.services;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
@@ -30,14 +31,20 @@ public class UserService {
 		return (User) session.getAttribute("currentUser");
 	}
 	
-	@GetMapping("/api/user")
-	public List<User> findAllUsers() {
-		return (List<User>) userRepository.findAll();
-	}
-	
 	@PostMapping("/login")
 	public User login(@RequestBody User user) {
 		return userRepository.findUserByCredentials(user.getUsername(), user.getPassword());
+	}
+	
+	@GetMapping("/api/user/{userId}")
+	public Optional<User> findUserById(@PathVariable("userId") String userId) {
+		int id = Integer.parseInt(userId);
+		return userRepository.findById(id);
+	}
+	
+	@GetMapping("/api/user")
+	public List<User> findAllUsers() {
+		return (List<User>) userRepository.findAll();
 	}
 	
 }
