@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.*;
 import com.example.myapp.models.User;
-import com.example.myapp.repositories.*;
+import com.example.myapp.repositories.UserRepository;
 
 @RestController
 public class UserService {
@@ -22,8 +22,8 @@ public class UserService {
 		User cu = userRepository.save(user);
 		
 		session.setAttribute("currentUser", cu);
+		System.out.println(cu);
 		return cu;
-		//return userRepository.save(user);
 	}
 	
 	@GetMapping("/checkLogin")
@@ -40,6 +40,11 @@ public class UserService {
 	public Optional<User> findUserById(@PathVariable("userId") String userId) {
 		int id = Integer.parseInt(userId);
 		return userRepository.findById(id);
+	}
+	
+	@DeleteMapping("/api/user/{userId}")
+	public void deleteUser(@PathVariable("userId") int id) {
+		userRepository.deleteById(id);
 	}
 	
 	@GetMapping("/api/user")

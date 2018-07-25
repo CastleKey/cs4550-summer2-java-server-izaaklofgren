@@ -8,7 +8,8 @@
 
     registerBtn.click(registerHandler);
 
-    function registerHandler() {
+    function registerHandler(event) {
+        event.preventDefault();
         var usernameStr = usernameFld.val();
         var passwordStr = passwordFld.val();
         var password2Str = password2Fld.val();
@@ -31,7 +32,7 @@
     }
 
     function registrationSuccessful() {
-        alert('yay');
+        window.location.href = 'profile.template.client.html';
     }
 
     function registrationFailed() {
