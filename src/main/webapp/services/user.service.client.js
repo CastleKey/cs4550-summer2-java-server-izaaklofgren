@@ -1,13 +1,22 @@
 function UserServiceClient() {
 
+    this.createUser = createUser;
     this.findAllUsers = findAllUsers;
+    this.findUserById = findUserById;
     this.deleteUser = deleteUser;
+    this.updateUser = updateUser;
+    this.url = 'http://localhost:8080/api/user';
+    var self = this;
 
-    function deleteUser(id) {
-        var url = "/api/user/" + id;
-        return fetch(url, {
-            method: 'delete'
-        })
+    function createUser(userObjStr) {
+        return fetch('/register', {
+            method: 'post',
+            body: userObjStr,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            'credentials': 'include'
+        });
     }
 
     function findAllUsers() {
@@ -16,5 +25,31 @@ function UserServiceClient() {
             .then(function (response) {
                 return response.json();
             });
+    }
+
+    function findUserById(userId) {
+        var url = "/api/user/" + userId;
+        return fetch(url)
+            .then(function (response) {
+                return response.json();
+            });
+    }
+
+    function deleteUser(id) {
+        var url = "/api/user/" + id;
+        return fetch(url, {
+            method: 'delete'
+        });
+    }
+
+    function updateUser(id, user) {
+        return fetch("/api/user/" + id, {
+            method: 'put',
+            body: JSON.stringify(user),
+            'credentials': 'include',
+            headers: {
+                'content-type': 'application/json'
+            }
+        });
     }
 }

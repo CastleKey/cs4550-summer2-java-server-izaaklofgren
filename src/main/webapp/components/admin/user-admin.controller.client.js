@@ -57,7 +57,6 @@
         var $button = $(event.currentTarget);
         var id = $button.attr('id');
 
-
         userServiceClient
             .deleteUser(id)
             .then(function () {

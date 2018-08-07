@@ -20,7 +20,6 @@ public class UserService {
 	@PostMapping("/register")
 	public User register(@RequestBody User user, HttpSession session) {
 		User cu = userRepository.save(user);
-		
 		session.setAttribute("currentUser", cu);
 		System.out.println(cu);
 		return cu;
@@ -40,6 +39,20 @@ public class UserService {
 	public Optional<User> findUserById(@PathVariable("userId") String userId) {
 		int id = Integer.parseInt(userId);
 		return userRepository.findById(id);
+	}
+	
+	@PutMapping("/api/user/{userId}")
+	public User updateUser(
+			@PathVariable("userId") int id,
+			@RequestBody User newUser) {
+		Optional<User> optional = userRepository.findById(id);
+		if(optional.isPresent()) {
+			User user = optional.get();
+			user.setFirstName(newUser.getFirstName());
+			user.setLastName(newUser.getLastName());
+			return userRepository.save(user);
+		}
+		return null;
 	}
 	
 	@DeleteMapping("/api/user/{userId}")

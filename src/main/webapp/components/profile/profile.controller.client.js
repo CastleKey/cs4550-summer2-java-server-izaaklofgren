@@ -1,5 +1,6 @@
 (function () {
 
+    var userServiceClient = new UserServiceClient();
     var $username, $firstName, $lastName,
         $updateBtn;
     var currentUser = null;
@@ -24,14 +25,17 @@
             lastName: $lastName.val()
         };
 
-        fetch("/api/user/" + currentUser.id, {
-            method: 'put',
-            body: JSON.stringify(user),
-            'credentials': 'include',
-            headers: {
-                'content-type': 'application/json'
-            }
-        });
+        userServiceClient
+            .updateUser(currentUser.id, user);
+
+        // fetch("/api/user/" + currentUser.id, {
+        //     method: 'put',
+        //     body: JSON.stringify(user),
+        //     'credentials': 'include',
+        //     headers: {
+        //         'content-type': 'application/json'
+        //     }
+        // });
     }
 
     function renderUser(user) {
@@ -51,10 +55,12 @@
     }
 
     function findUserById(userId) {
-        return fetch('/api/user/' + userId)
-            .then(function (response) {
-                return response.json();
-            });
+        userServiceClient
+            .findUserById(userId);
+        // return fetch('/api/user/' + userId)
+        //     .then(function (response) {
+        //         return response.json();
+        //     });
     }
 
     function handleResponse() {

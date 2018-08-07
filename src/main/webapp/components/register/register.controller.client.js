@@ -1,6 +1,8 @@
 // IIFE
 
 (function () {
+
+    var userServiceClient = new UserServiceClient();
     var registerBtn = jQuery('#registerBtn');
     var usernameFld = $('#username');
     var passwordFld = $('#password');
@@ -21,18 +23,22 @@
 
         var userObjStr = JSON.stringify(userObj);
 
-        fetch('/register', {
-            method: 'post',
-            body: userObjStr,
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            'credentials': 'include'
-        }).then(registrationSuccessful, registrationFailed)
+        userServiceClient
+            .createUser(userObjStr)
+            .then(registrationSuccessful, registrationFailed)
+
+        // fetch('/register', {
+        //     method: 'post',
+        //     body: userObjStr,
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     'credentials': 'include'
+        // }).then(registrationSuccessful, registrationFailed)
     }
 
     function registrationSuccessful() {
-        window.location.href = 'profile.template.client.html';
+        window.location.href = '../profile/profile.template.client.html';
     }
 
     function registrationFailed() {

@@ -1,17 +1,29 @@
-<h1>Profile</h1>
+<html>
+<head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+          rel="stylesheet">
+    <title>Profile Page</title>
+</head>
 
-<input placeholder="username" id="username">
-<br/>
-<input id="firstName"/>
-<br/>
-<input id="lastName"/>
-<br/>
-<button id="updateBtn">
-    Update
-</button>
-<script
-        src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
+<body>
+    <h1>Profile</h1>
 
-<script src="profile.controller.client.js"></script>
+    <input placeholder="username" id="username">
+    <br/>
+    <input id="firstName"/>
+    <br/>
+    <input id="lastName"/>
+    <br/>
+    <button id="updateBtn">
+        Update
+    </button>
+
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+
+    <script src="../../services/user.service.client.js"></script>
+    <script src="profile.controller.client.js"></script>
+</body>
+</html>
