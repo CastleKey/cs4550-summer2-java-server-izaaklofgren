@@ -26,15 +26,6 @@
         userServiceClient
             .createUser(userObjStr)
             .then(registrationSuccessful, registrationFailed)
-
-        // fetch('/register', {
-        //     method: 'post',
-        //     body: userObjStr,
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     'credentials': 'include'
-        // }).then(registrationSuccessful, registrationFailed)
     }
 
     function registrationSuccessful() {
@@ -42,6 +33,6 @@
     }
 
     function registrationFailed() {
-        alert('Uh oh');
+        alert('Incorrect password/username');
     }
 })();

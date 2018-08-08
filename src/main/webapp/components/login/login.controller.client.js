@@ -23,17 +23,6 @@
             .login(userObjStr)
             .then(navigateToProfile);
 
-        // fetch('/login', {
-        //     method: 'post',
-        //     body: userObjStr,
-        //     headers: {
-        //         'content-type': 'application/json'
-        //     },
-        //     'credentials': 'include'
-        // }).then(navigateToProfile)
-
-
-
     }
     function navigateToProfile() {
         window.location.href = '../profile/profile.template.client.html';

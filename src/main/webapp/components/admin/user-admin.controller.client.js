@@ -1,8 +1,27 @@
-(function () {
+(function() {
 
     var userServiceClient = new UserServiceClient();
+    // var $updateBtn = jQuery('#updateBtn');
+    // var $createBtn = jQuery('#createBtn');
+    var $updateBtn;
+    var $createBtn;
+    var usernameFld = $('#username');
+    var passwordFld = $('#password');
+    var firstNameFld = $('#firstName');
+    var lastNameFld = $('#lastName');
+    var emailFld = $('#email');
+    var roleFld = $('#role');
+
+    //updateBtn.click(loginHandler);
+    //createBtn.click(registerHandler);
 
     function init() {
+        $updateBtn = $("#updateBtn");
+        $createBtn = $("#createBtn");
+
+        $updateBtn.click(updateUser);
+        $createBtn.click(registerHandler)
+
         userServiceClient
             .findAllUsers()
             .then(renderUsers);
@@ -14,7 +33,7 @@
 
         var tbody = $('tbody');
         tbody.empty();
-        for (var i=0; i<users.length; i++) {
+        for (var i = 0; i < users.length; i++) {
             var user = users[i];
 
             var tr = $('<tr>');
@@ -59,12 +78,71 @@
 
         userServiceClient
             .deleteUser(id)
-            .then(function () {
+            .then(function() {
                 userServiceClient
                     .findAllUsers()
                     .then(renderUsers);
             });
 
+    }
+
+    function registerHandler(event) {
+        event.preventDefault();
+
+        var usernameStr = usernameFld.val();
+        var passwordStr = passwordFld.val();
+        var firstNameStr = firstNameFld.val();
+        var lastNameStr = lastNameFld.val();
+        var emailStr = emailFld.val();
+        var roleStr = roleFld.val();
+
+        var userObj = {
+            username: usernameStr,
+            password: passwordStr,
+            firstName: firstNameStr,
+            lastName: lastNameStr,
+            email: emailStr,
+            role: roleStr
+        };
+
+        var userObjStr = JSON.stringify(userObj);
+
+        userServiceClient
+            .createUser(userObjStr)
+            .then(function() {
+                userServiceClient
+                    .findAllUsers()
+                    .then(renderUsers);
+            });
+    }
+
+    function updateUser() {
+
+        var usernameStr = usernameFld.val();
+        var passwordStr = passwordFld.val();
+        var firstNameStr = firstNameFld.val();
+        var lastNameStr = lastNameFld.val();
+        var emailStr = emailFld.val();
+        var roleStr = roleFld.val();
+
+        var user = {
+            username: usernameStr,
+            password: passwordStr,
+            firstName: firstNameStr,
+            lastName: lastNameStr,
+            email: emailStr,
+            role: roleStr
+        };
+
+        var userObjStr = JSON.stringify(user);
+
+        userServiceClient
+            .findUserByName(userObjStr)
+            .then(function() {
+                userServiceClient
+                    .findAllUsers()
+                    .then(renderUsers);
+            });
     }
 
 })();

@@ -27,15 +27,6 @@
 
         userServiceClient
             .updateUser(currentUser.id, user);
-
-        // fetch("/api/user/" + currentUser.id, {
-        //     method: 'put',
-        //     body: JSON.stringify(user),
-        //     'credentials': 'include',
-        //     headers: {
-        //         'content-type': 'application/json'
-        //     }
-        // });
     }
 
     function renderUser(user) {

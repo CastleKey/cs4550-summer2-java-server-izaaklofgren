@@ -21,13 +21,27 @@
         <th>&nbsp;</th>
     </tr>
     <tr>
-        <th><input/></th>
-        <th><input/></th>
-        <th><input/></th>
-        <th><input/></th>
-        <th><input/></th>
+        <th><input type="text"
+               placeholder="username"
+               id="username"/></th>
+
+        <th><input type="password"
+               placeholder="password"
+               id="password"/></th>
+
+        <th><input type="text"
+               placeholder="first name"
+               id="firstName"/></th>
+
+        <th><input type="text"
+               placeholder="last name"
+               id="lastName"/></th>
+
+        <th><input type="text"
+               placeholder="email"
+               id="email"/></th>
         <th>
-            <select>
+            <select id='selectRole'>
                 <option value="FACULTY">
                     Faculty
                 </option>
@@ -37,8 +51,8 @@
             </select>
         </th>
         <th>
-            <button>Update</button>
-            <button>Create</button>
+            <button id='updateBtn'>Update</button>
+            <button id='createBtn'>Create</button>
         </th>
     </tr>
 

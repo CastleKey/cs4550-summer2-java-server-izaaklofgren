@@ -37,6 +37,17 @@ public class UserService {
 		return cu;
 	}
 	
+	@PostMapping("/edit")
+	public User findUserByName(@RequestBody User user) {
+		User optional = userRepository.findUserByCredentials(user.getUsername(), user.getPassword());
+		User userUpdate = optional;
+		userUpdate.setFirstName(user.getFirstName());
+		userUpdate.setLastName(user.getLastName());
+		userUpdate.setEmail(user.getEmail());
+		userUpdate.setRole(user.getRole());
+		return userRepository.save(user);
+	}
+	
 	@GetMapping("/api/user/{userId}")
 	public Optional<User> findUserById(@PathVariable("userId") String userId) {
 		int id = Integer.parseInt(userId);
@@ -44,9 +55,7 @@ public class UserService {
 	}
 	
 	@PutMapping("/api/user/{userId}")
-	public User updateUser(
-			@PathVariable("userId") int id,
-			@RequestBody User newUser) {
+	public User updateUser(@PathVariable("userId") int id, @RequestBody User newUser) {
 		Optional<User> optional = userRepository.findById(id);
 		if(optional.isPresent()) {
 			User user = optional.get();
