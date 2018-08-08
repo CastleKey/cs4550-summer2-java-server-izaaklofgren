@@ -20,8 +20,8 @@
         var userObjStr = JSON.stringify(userObj);
 
         userServiceClient
-            .findUserById(userObjStr)
-            .then(navigateToProfile)
+            .login(userObjStr)
+            .then(navigateToProfile);
 
         // fetch('/login', {
         //     method: 'post',
@@ -32,9 +32,10 @@
         //     'credentials': 'include'
         // }).then(navigateToProfile)
 
-        function navigateToProfile() {
-            window.location.href = '../profile/profile.template.client.html';
-        }
 
+
+    }
+    function navigateToProfile() {
+        window.location.href = '../profile/profile.template.client.html';
     }
 })();

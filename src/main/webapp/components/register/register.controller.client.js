@@ -19,7 +19,7 @@
         var userObj = {
             username: usernameStr,
             password: passwordStr
-        }
+        };
 
         var userObjStr = JSON.stringify(userObj);
 

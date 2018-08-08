@@ -47,6 +47,10 @@
 
     function profile() {
         return fetch('/profile', {
+            method: 'get',
+            headers: {
+                'Content-Type': 'application/json'
+            },
             'credentials': 'include'
         })
             .then(function (response) {
