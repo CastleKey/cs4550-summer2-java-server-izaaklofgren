@@ -1,47 +1,41 @@
+<!doctype html>
 <html>
+
 <head>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-          rel="stylesheet">
-    <link href="../../css/styles.css"
-          rel="stylesheet"/>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/styles.css" rel="stylesheet" />
     <title>User Admin</title>
 </head>
 
 <body>
     <h1>User Admin</h1>
-<table border="1">
-    <thead>
-    <tr>
-        <th>Username</th>
-        <th>Password</th>
-        <th>First</th>
-        <th>Last</th>
-        <th>Email</th>
-        <th>Role</th>
-        <th>&nbsp;</th>
-    </tr>
-    <tr>
-        <th><input type="text"
-               placeholder="username"
-               id="username"/></th>
+    <div class="table-responsive">
+    <table class="table-striped" border="1">
+        <thead>
+            <tr>
+                <th>User ID</th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>First</th>
+                <th>Last</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>&nbsp;</th>
+            </tr>
+            <tr>
+                <th><input type="text" placeholder="id" id="id" /></th>
 
-        <th><input type="password"
-               placeholder="password"
-               id="password"/></th>
+                <th><input type="text" placeholder="username" id="username" /></th>
 
-        <th><input type="text"
-               placeholder="first name"
-               id="firstName"/></th>
+                <th><input type="password" placeholder="password" id="password" /></th>
 
-        <th><input type="text"
-               placeholder="last name"
-               id="lastName"/></th>
+                <th><input type="text" placeholder="first name" id="firstName" /></th>
 
-        <th><input type="text"
-               placeholder="email"
-               id="email"/></th>
-        <th>
-            <select id='selectRole'>
+                <th><input type="text" placeholder="last name" id="lastName" /></th>
+
+                <th><input type="text" placeholder="email" id="email" /></th>
+                <th>
+                    <select id='role'>
                 <option value="FACULTY">
                     Faculty
                 </option>
@@ -49,41 +43,40 @@
                     Student
                 </option>
             </select>
-        </th>
-        <th>
-            <button id='updateBtn'>Update</button>
-            <button id='createBtn'>Create</button>
-        </th>
-    </tr>
+                </th>
+                <th>
+                    <button id='updateBtn'>Update</button>
+                    <button id='createBtn'>Create</button>
+                </th>
+            </tr>
 
-    </thead>
-    <tbody>
-    <tr>
-        <th>alice</th>
-        <th>*****</th>
-        <th>Alice</th>
-        <th>Wonderland</th>
-        <th>alice@wonderland.com</th>
-        <th>Faculty</th>
-        <th>
-            <button>Delete</button>
-            <button>Edit</button>
-        </th>
-    </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>alice</th>
+                <th>*****</th>
+                <th>Alice</th>
+                <th>Wonderland</th>
+                <th>alice@wonderland.com</th>
+                <th>Faculty</th>
+                <th>
+                    <button>Delete</button>
+                    <button>Edit</button>
+                </th>
+            </tr>
 
-    </tbody>
-    <tfoot>
+        </tbody>
+        <tfoot>
 
-    </tfoot>
-</table>
+        </tfoot>
+    </table>
+    </div>
 
-<script
-        src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous">
-</script>
-<script src="../../services/user.service.client.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous">
+    </script>
+    <script src="../../services/user.service.client.js"></script>
 
-<script src="user-admin.controller.client.js"></script>
+    <script src="user-admin.controller.client.js"></script>
 </body>
+
 </html>

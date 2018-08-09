@@ -5,6 +5,7 @@
     // var $createBtn = jQuery('#createBtn');
     var $updateBtn;
     var $createBtn;
+    var idFld = $('#id');
     var usernameFld = $('#username');
     var passwordFld = $('#password');
     var firstNameFld = $('#firstName');
@@ -38,11 +39,15 @@
 
             var tr = $('<tr>');
             var td = $('<td>');
+            td.append(user.id);
+            tr.append(td);
+
+            td = $('<td>');
             td.append(user.username);
             tr.append(td);
 
             td = $('<td>');
-            td.append('*******');
+            td.append(user.password);
             tr.append(td);
 
             td = $('<td>');
@@ -54,11 +59,11 @@
             tr.append(td);
 
             td = $('<td>');
-            td.append('someone@email.com');
+            td.append(user.email);
             tr.append(td);
 
             td = $('<td>');
-            td.append('student');
+            td.append(user.role);
             tr.append(td);
 
             td = $('<td>');
@@ -118,6 +123,7 @@
 
     function updateUser() {
 
+        var idStr = idFld.val();
         var usernameStr = usernameFld.val();
         var passwordStr = passwordFld.val();
         var firstNameStr = firstNameFld.val();
@@ -134,10 +140,10 @@
             role: roleStr
         };
 
-        var userObjStr = JSON.stringify(user);
+        //var userObjStr = JSON.stringify(user);
 
         userServiceClient
-            .findUserByName(userObjStr)
+            .updateUser(idStr, user)
             .then(function() {
                 userServiceClient
                     .findAllUsers()

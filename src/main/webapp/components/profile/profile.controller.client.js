@@ -1,15 +1,18 @@
 (function () {
 
     var userServiceClient = new UserServiceClient();
-    var $username, $firstName, $lastName,
+    var $username, $password, $firstName, $lastName, $email, $role,
         $updateBtn;
     var currentUser = null;
 
     function init() {
 
         $username = $("#username");
+        $password = $("#password");
         $firstName = $("#firstName");
         $lastName = $("#lastName");
+        $email = $("#email");
+        $role = $("#role");
         $updateBtn = $("#updateBtn");
 
         $updateBtn.click(updateUser);
@@ -21,8 +24,12 @@
 
     function updateUser() {
         var user = {
+            username: $username.val(),
+            password: $password.val(),
             firstName: $firstName.val(),
-            lastName: $lastName.val()
+            lastName: $lastName.val(),
+            email: $email.val(),
+            role: $role.val()
         };
 
         userServiceClient
@@ -32,8 +39,11 @@
     function renderUser(user) {
         currentUser = user;
         $username.val(user.username);
+        $password.val(user.password);
         $firstName.val(user.firstName);
         $lastName.val(user.lastName);
+        $email.val(user.email);
+        $role.val(user.role);
     }
 
     function profile() {
@@ -52,10 +62,6 @@
     function findUserById(userId) {
         userServiceClient
             .findUserById(userId);
-        // return fetch('/api/user/' + userId)
-        //     .then(function (response) {
-        //         return response.json();
-        //     });
     }
 
     function handleResponse() {
